@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    //buildToolsVersion "24.0.1"
+    defaultConfig {
+        applicationId "example.com.presentation"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    def dep     = rootProject.ext.presentationDependencies
+    def depTest = rootProject.ext.presentationTestDependencies
+
+    implementation      dep.appcompat
+    annotationProcessor dep.daggerCompiler
+    implementation      dep.dagger
+    implementation      dep.recyclerView
+    implementation      dep.rxJava
+    implementation      dep.rxAndroid
+    implementation      dep.butterKnife
+    annotationProcessor dep.butterKnifeCompiler
+    compileOnly         dep.javaxAnnotation
+    implementation      dep.leakCanary
+
+    androidTestImplementation depTest.runner
+    androidTestImplementation depTest.mockito
+
+    implementation "androidx.appcompat:appcompat:1.0.2"
+}
