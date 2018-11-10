@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    def dep = rootProject.ext.dataDependencies
+
+    annotationProcessor dep.daggerCompiler
+    implementation      dep.dagger
+    implementation      dep.rxJava
+}
+

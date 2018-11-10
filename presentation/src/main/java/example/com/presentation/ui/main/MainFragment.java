@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import example.com.presentation.R;
 import example.com.presentation.ui.base.BaseFragment;
 
@@ -25,7 +23,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     @Inject ExampleAdapter mAdapter;
     @Inject MainPresenter  mMainPresenter;
 
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
 
     //---------------------------------------------------------------
     // Lifecycle
@@ -51,7 +49,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, view);
+        mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;

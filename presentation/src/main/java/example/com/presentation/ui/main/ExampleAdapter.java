@@ -9,8 +9,6 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import example.com.presentation.R;
 
 /**
@@ -41,11 +39,10 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.title) TextView mTextViewTitle;
+        // TextView mTextViewTitle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
         }
     }
 }

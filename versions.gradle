@@ -13,7 +13,6 @@ ext {
     final rxJavaVersion = '2.1.1'
     final rxAndroidVersion = '2.0.1'
     final javaxAnnotationVersion = '1.0'
-    final butterKnifeVersion = '8.8.1'
     final retrofitVersion   = '2.4.0'
     final timberVersion     = '4.7.1'
 
@@ -28,8 +27,6 @@ ext {
             appcompat:          "androidx.appcompat:appcompat:${androidxAppcompatVersion}",
             daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger:             "com.google.dagger:dagger:${daggerVersion}",
-            butterKnife:        "com.jakewharton:butterknife:${butterKnifeVersion}",
-            butterKnifeCompiler:"com.jakewharton:butterknife:${butterKnifeVersion}",
             recyclerView:       "androidx.recyclerview:recyclerview:${recyclerViewVersion}",
             rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
@@ -42,5 +39,17 @@ ext {
     presentationTestDependencies = [
             mockito:            "org.mockito:mockito-core:${mockitoVersion}",
             runner:             "androidx.test:runner:${androidxRunnerVersion}"
+    ]
+
+    domainDependencies = [
+            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger:             "com.google.dagger:dagger:${daggerVersion}",
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+    ]
+
+    dataDependencies = [
+            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger:             "com.google.dagger:dagger:${daggerVersion}",
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
     ]
 }

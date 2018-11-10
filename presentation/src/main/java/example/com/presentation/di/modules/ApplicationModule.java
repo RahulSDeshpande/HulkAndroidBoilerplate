@@ -6,6 +6,12 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import example.com.presentation.di.annotations.ApplicationContext;
+import example.com.presentation.executor.UiThread;
+import hulkdx.com.data.executor.CustomThreadExecutor;
+import hulkdx.com.data.executor.PostExecutionThread;
+import hulkdx.com.data.executor.ThreadExecutor;
+import hulkdx.com.data.repository.GithubRepoRepository;
+import hulkdx.com.data.repository.GithubRepoRepositoryImpl;
 
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 09/11/2018.
@@ -28,5 +34,20 @@ public class ApplicationModule {
     @ApplicationContext
     Context provideContext() {
         return mApplication;
+    }
+
+    @Provides
+    PostExecutionThread providePostExecutionThread(UiThread uiThread) {
+        return uiThread;
+    }
+
+    @Provides
+    ThreadExecutor provideThreadExecutor(CustomThreadExecutor customThreadExecutor) {
+        return customThreadExecutor;
+    }
+
+    @Provides
+    GithubRepoRepository provideGithubRepoRepository(GithubRepoRepositoryImpl impl) {
+        return impl;
     }
 }

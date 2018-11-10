@@ -1,8 +1,8 @@
-package example.com.presentation.ui.mapper;
+package example.com.presentation.mapper;
 
 import java.util.Collection;
 
-import example.com.presentation.ui.models.RepositoryModel;
+import example.com.presentation.models.RepositoryModel;
 
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.

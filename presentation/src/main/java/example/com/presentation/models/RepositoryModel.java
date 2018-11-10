@@ -1,4 +1,4 @@
-package example.com.presentation.ui.models;
+package example.com.presentation.models;
 
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.
