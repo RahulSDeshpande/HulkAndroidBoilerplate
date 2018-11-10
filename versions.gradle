@@ -15,6 +15,7 @@ ext {
     final javaxAnnotationVersion = '1.0'
     final butterKnifeVersion = '8.8.1'
     final retrofitVersion   = '2.4.0'
+    final timberVersion     = '4.7.1'
 
     //Testing
     final mockitoVersion = '1.9.5'
@@ -33,7 +34,9 @@ ext {
             rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+            leakCanary:         "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+            timber:             "com.jakewharton.timber:timber:${timberVersion}"
+
     ]
 
     presentationTestDependencies = [
