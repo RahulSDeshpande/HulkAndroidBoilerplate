@@ -9,7 +9,7 @@ import android.util.Log;
 
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity implements MainContract.View {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,9 +1,12 @@
 package hulkdx.com.data.repository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import hulkdx.com.data.model.GitHubRepositoryEntity;
+import hulkdx.com.data.remote.RemoteService;
 import io.reactivex.Flowable;
 
 /**
@@ -13,12 +16,15 @@ import io.reactivex.Flowable;
 @Singleton
 public class GithubRepoRepositoryImpl implements GithubRepoRepository {
 
+    private final RemoteService mRemoteService;
+
     @Inject
-    public GithubRepoRepositoryImpl() {
+    public GithubRepoRepositoryImpl(RemoteService remoteService) {
+        mRemoteService = remoteService;
     }
 
     @Override
-    public Flowable<GitHubRepositoryEntity> getGithubRepos() {
-        return null;
+    public Flowable<List<GitHubRepositoryEntity>> getGithubRepos() {
+        return mRemoteService.getRepos();
     }
 }

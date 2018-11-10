@@ -9,5 +9,8 @@ dependencies {
     annotationProcessor dep.daggerCompiler
     implementation      dep.dagger
     implementation      dep.rxJava
+    implementation      dep.retrofit
+    implementation      dep.retrofitGson
+    implementation      dep.retrofitRxJava
 }
 

@@ -4,7 +4,11 @@ package hulkdx.com.domain.interactor;
 import hulkdx.com.data.executor.PostExecutionThread;
 import hulkdx.com.data.executor.ThreadExecutor;
 import io.reactivex.Flowable;
+import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 
@@ -37,12 +41,24 @@ abstract class UseCase<T> {
 
         abstract Flowable<T> createFlowable();
 
-        public void execute(DisposableSubscriber<T> observer) {
-            final Flowable<T> flowable = this.createFlowable()
-                                             .subscribeOn(Schedulers.from(mThreadExecutor))
-                                             .observeOn(mPostExecutionThread.getScheduler());
+        public void execute(Consumer<? super T> onNext, Consumer<? super Throwable> onError) {
+            execute(onNext, onError, null);
+        }
 
-            mDisposables.add(flowable.subscribeWith(observer));
+        public void execute(Consumer<? super T> onNext,
+                            Consumer<? super Throwable> onError,
+                            @Nullable Action onComplete) {
+            final Flowable<T> flowable = this.createFlowable()
+                                             .subscribeOn(Schedulers.io())
+                                             .observeOn(mPostExecutionThread.getScheduler());
+            Disposable disposable;
+            if (onComplete == null) {
+                disposable = flowable.subscribe(onNext, onError);
+            } else {
+                disposable = flowable.subscribe(onNext, onError, onComplete);
+            }
+
+            mDisposables.add(disposable);
         }
     }
 

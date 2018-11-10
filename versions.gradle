@@ -51,5 +51,8 @@ ext {
             daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger:             "com.google.dagger:dagger:${daggerVersion}",
             rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            retrofit:           "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitRxJava:     "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            retrofitGson:       "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
     ]
 }

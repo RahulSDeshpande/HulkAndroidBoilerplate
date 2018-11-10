@@ -9,8 +9,25 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/git_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test"/>
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="github name"/>
+
+    <TextView
+        android:id="@+id/git_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="github url"/>
+
+    <!-- divider? haha -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorPrimaryDark"/>
 
 </LinearLayout>

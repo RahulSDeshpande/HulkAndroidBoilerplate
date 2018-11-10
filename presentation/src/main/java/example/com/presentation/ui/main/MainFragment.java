@@ -6,6 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
@@ -13,7 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import example.com.presentation.R;
+import example.com.presentation.models.GithubRepositoryModel;
 import example.com.presentation.ui.base.BaseFragment;
+import timber.log.Timber;
 
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.
@@ -79,5 +85,21 @@ public class MainFragment extends BaseFragment implements MainContract.View {
             throw new RuntimeException("cannot cast activity");
         }
         return activity;
+    }
+
+    //---------------------------------------------------------------
+    // MVP callbacks
+    //---------------------------------------------------------------
+
+    @Override
+    public void githubRepositoriesLoaded(Collection<GithubRepositoryModel> githubRepositoryModels) {
+        Timber.i("data loaded");
+        mAdapter.setData(githubRepositoryModels);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void githubRepositoriesFailed(Throwable t) {
+
     }
 }

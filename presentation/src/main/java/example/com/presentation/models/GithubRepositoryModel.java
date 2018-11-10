@@ -5,5 +5,7 @@ package example.com.presentation.models;
  *
  * Test presentation Model for getting a Repository from GitHub.
  */
-public class RepositoryModel {
+public class GithubRepositoryModel {
+    public String name;
+    public String url;
 }

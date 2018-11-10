@@ -1,6 +1,9 @@
 package hulkdx.com.domain.interactor;
 
+import java.util.Collection;
+
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import hulkdx.com.data.executor.PostExecutionThread;
 import hulkdx.com.data.executor.ThreadExecutor;
@@ -13,12 +16,12 @@ import io.reactivex.Flowable;
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.
  */
-public class GetGihubRepositoryList extends UseCase.FlowableUseCase<GitHubRepository> {
+@Singleton
+public class GetGihubRepositoryList extends UseCase.FlowableUseCase<Collection<GitHubRepository>> {
 
     private final GithubRepoRepository mRepository;
 
     @Inject
-    @SuppressWarnings("unused")
     public GetGihubRepositoryList(GithubRepoRepository repository,
                                   ThreadExecutor mThreadExecutor,
                                   PostExecutionThread mPostExecutionThread) {
@@ -27,7 +30,7 @@ public class GetGihubRepositoryList extends UseCase.FlowableUseCase<GitHubReposi
     }
 
     @Override
-    Flowable<GitHubRepository> createFlowable() {
+    Flowable<Collection<GitHubRepository>> createFlowable() {
         return mRepository.getGithubRepos().map(new GithubRepoMapper());
     }
 }
