@@ -46,6 +46,8 @@ dependencies {
     implementation      dep.leakCanary
     implementation      dep.timber
     implementation      dep.kotlinStd
+    implementation      dep.liveData
+    kapt                dep.liveDataAnnotation
 
     androidTestImplementation depTest.runner
     androidTestImplementation depTest.mockito

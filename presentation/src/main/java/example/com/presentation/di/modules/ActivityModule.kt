@@ -2,6 +2,8 @@ package example.com.presentation.di.modules
 
 import android.app.Activity
 import android.content.Context
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 
 import dagger.Module
 import dagger.Provides

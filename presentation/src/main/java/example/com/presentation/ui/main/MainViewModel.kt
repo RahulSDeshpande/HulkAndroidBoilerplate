@@ -1,10 +1,16 @@
 package example.com.presentation.ui.main
 
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
+import example.com.presentation.ViewModelProviderFactory
 import example.com.presentation.di.ConfigPersistent
 import javax.inject.Inject
 
 import example.com.presentation.mapper.GitRepositoryModelMapper
-import example.com.presentation.ui.base.BasePresenter
+import example.com.presentation.models.GithubRepositoryModel
 import hulkdx.com.domain.interactor.GetGithubRepositoryList
 import io.reactivex.functions.Consumer
 
@@ -12,25 +18,27 @@ import io.reactivex.functions.Consumer
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.
  */
 @ConfigPersistent
-class MainPresenter @Inject constructor(
+class MainViewModel @Inject constructor(
         private val mGetGithubRepositoryList: GetGithubRepositoryList,
         private val mGitRepositoryModelMapper: GitRepositoryModelMapper
 
-): MainContract.Presenter<MainContract.View>, BasePresenter<MainContract.View>() {
+): ViewModel() {
 
-    override fun detach() {
-        super.detach()
+    private var githubRepositoryModels = MutableLiveData<List<GithubRepositoryModel>>()
+
+    override fun onCleared() {
+        super.onCleared()
         mGetGithubRepositoryList.dispose()
     }
 
     fun loadData() {
         mGetGithubRepositoryList.execute(
                 Consumer { gitHubRepositories ->
-                    view?.githubRepositoriesLoaded(
-                            mGitRepositoryModelMapper.convert(gitHubRepositories))
+                    githubRepositoryModels.value = mGitRepositoryModelMapper.convert(gitHubRepositories)
                 },
                 Consumer { throwable ->
-                    view?.githubRepositoriesFailed(throwable)
                 })
     }
+
+    fun getGithubRepositoryModels(): LiveData<List<GithubRepositoryModel>> = githubRepositoryModels
 }
