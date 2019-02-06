@@ -3,7 +3,7 @@ package example.com.presentation.executor;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import hulkdx.com.data.executor.PostExecutionThread;
+import hulkdx.com.domain.executor.PostExecutionThread;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 

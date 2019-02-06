@@ -1,17 +1,11 @@
 package example.com.presentation.ui.main;
 
-import java.util.Collection;
-
 import javax.inject.Inject;
 
 import example.com.presentation.di.annotations.ConfigPersistent;
 import example.com.presentation.mapper.GitRepositoryModelMapper;
 import example.com.presentation.ui.base.BasePresenter;
-import hulkdx.com.domain.interactor.GetGihubRepositoryList;
-import hulkdx.com.domain.models.GitHubRepository;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import timber.log.Timber;
+import hulkdx.com.domain.interactor.GetGithubRepositoryList;
 
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.
@@ -20,21 +14,21 @@ import timber.log.Timber;
 @ConfigPersistent
 public class MainPresenter extends BasePresenter<MainContract.View> {
 
-    private final GetGihubRepositoryList mGetGihubRepositoryList;
+    private final GetGithubRepositoryList mGetGithubRepositoryList;
 
     @Inject
-    public MainPresenter(GetGihubRepositoryList getGihubRepositoryList) {
-        mGetGihubRepositoryList = getGihubRepositoryList;
+    public MainPresenter(GetGithubRepositoryList getGithubRepositoryList) {
+        mGetGithubRepositoryList = getGithubRepositoryList;
     }
 
     @Override
     public void detach() {
         super.detach();
-        mGetGihubRepositoryList.dispose();
+        mGetGithubRepositoryList.dispose();
     }
 
     public void loadData() {
-            mGetGihubRepositoryList.execute(
+            mGetGithubRepositoryList.execute(
                     gitHubRepositories -> {
                         getView().githubRepositoriesLoaded(GitRepositoryModelMapper.convert(gitHubRepositories));
                     },

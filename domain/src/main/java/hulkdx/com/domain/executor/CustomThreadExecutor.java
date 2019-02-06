@@ -1,4 +1,4 @@
-package hulkdx.com.data.executor;
+package hulkdx.com.domain.executor;
 
 
 import java.util.concurrent.LinkedBlockingQueue;

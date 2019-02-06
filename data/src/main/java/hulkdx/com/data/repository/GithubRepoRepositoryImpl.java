@@ -5,8 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import hulkdx.com.data.model.GitHubRepositoryEntity;
+import hulkdx.com.data.mapper.GithubRepoMapper;
 import hulkdx.com.data.remote.RemoteService;
+import hulkdx.com.domain.models.GitHubRepository;
+import hulkdx.com.domain.repository.GithubRepoRepository;
 import io.reactivex.Flowable;
 
 /**
@@ -24,7 +26,7 @@ public class GithubRepoRepositoryImpl implements GithubRepoRepository {
     }
 
     @Override
-    public Flowable<List<GitHubRepositoryEntity>> getGithubRepos() {
-        return mRemoteService.getRepos();
+    public Flowable<List<GitHubRepository>> getGithubRepos() {
+        return mRemoteService.getRepos().map(new GithubRepoMapper());
     }
 }

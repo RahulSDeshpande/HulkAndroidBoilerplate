@@ -4,6 +4,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    implementation project(':domain')
+    
     def dep = rootProject.ext.dataDependencies
 
     annotationProcessor dep.daggerCompiler

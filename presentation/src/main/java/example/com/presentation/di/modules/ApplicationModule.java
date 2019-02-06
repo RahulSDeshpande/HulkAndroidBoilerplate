@@ -7,10 +7,10 @@ import dagger.Module;
 import dagger.Provides;
 import example.com.presentation.di.annotations.ApplicationContext;
 import example.com.presentation.executor.UiThread;
-import hulkdx.com.data.executor.CustomThreadExecutor;
-import hulkdx.com.data.executor.PostExecutionThread;
-import hulkdx.com.data.executor.ThreadExecutor;
-import hulkdx.com.data.repository.GithubRepoRepository;
+import hulkdx.com.domain.executor.CustomThreadExecutor;
+import hulkdx.com.domain.executor.PostExecutionThread;
+import hulkdx.com.domain.executor.ThreadExecutor;
+import hulkdx.com.domain.repository.GithubRepoRepository;
 import hulkdx.com.data.repository.GithubRepoRepositoryImpl;
 
 /**

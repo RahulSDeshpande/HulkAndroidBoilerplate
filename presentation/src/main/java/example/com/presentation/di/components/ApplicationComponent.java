@@ -9,7 +9,7 @@ import dagger.Component;
 import example.com.presentation.di.annotations.ApplicationContext;
 import example.com.presentation.di.modules.ApplicationModule;
 import example.com.presentation.di.modules.NetworkModule;
-import hulkdx.com.domain.interactor.GetGihubRepositoryList;
+import hulkdx.com.domain.interactor.GetGithubRepositoryList;
 
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 09/11/2018.
@@ -21,5 +21,5 @@ public interface ApplicationComponent {
     @ApplicationContext Context context();
 
     Application application();
-    GetGihubRepositoryList getGihubRepositoryList();
+    GetGithubRepositoryList getGihubRepositoryList();
 }

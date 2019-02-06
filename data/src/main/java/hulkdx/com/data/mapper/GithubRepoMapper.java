@@ -1,4 +1,4 @@
-package hulkdx.com.domain.mapper;
+package hulkdx.com.data.mapper;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,9 +11,9 @@ import io.reactivex.functions.Function;
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.
  */
-public class GithubRepoMapper implements Function<Collection<GitHubRepositoryEntity>, Collection<GitHubRepository>> {
+public class GithubRepoMapper implements Function<List<GitHubRepositoryEntity>, List<GitHubRepository>> {
     @Override
-    public Collection<GitHubRepository> apply(Collection<GitHubRepositoryEntity> listEntity) throws Exception {
+    public List<GitHubRepository> apply(List<GitHubRepositoryEntity> listEntity) throws Exception {
         List<GitHubRepository> list = new ArrayList<>();
         for (GitHubRepositoryEntity entity: listEntity) {
             list.add(convert(entity));
