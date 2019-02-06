@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -34,7 +37,7 @@ dependencies {
     def depTest = rootProject.ext.presentationTestDependencies
 
     implementation      dep.appcompat
-    annotationProcessor dep.daggerCompiler
+    kapt                dep.daggerCompiler
     implementation      dep.dagger
     implementation      dep.recyclerView
     implementation      dep.rxJava
@@ -42,9 +45,8 @@ dependencies {
     compileOnly         dep.javaxAnnotation
     implementation      dep.leakCanary
     implementation      dep.timber
+    implementation      dep.kotlinStd
 
     androidTestImplementation depTest.runner
     androidTestImplementation depTest.mockito
-
-    implementation "androidx.appcompat:appcompat:1.0.2"
 }

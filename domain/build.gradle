@@ -1,15 +1,15 @@
-apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    implementation project(':data')
 
     def dep = rootProject.ext.domainDependencies
 
     annotationProcessor dep.daggerCompiler
     implementation      dep.dagger
     implementation      dep.rxJava
+    implementation      dep.kotlinStd
 }
 
