@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
 import example.com.presentation.ViewModelProviderFactory
 import example.com.presentation.di.ConfigPersistent
 import javax.inject.Inject
@@ -24,7 +23,7 @@ class MainViewModel @Inject constructor(
 
 ): ViewModel() {
 
-    private var githubRepositoryModels = MutableLiveData<List<GithubRepositoryModel>>()
+    private var githubRepositoryModels = MutableLiveData<MainContract>()
 
     override fun onCleared() {
         super.onCleared()
@@ -34,11 +33,18 @@ class MainViewModel @Inject constructor(
     fun loadData() {
         mGetGithubRepositoryList.execute(
                 Consumer { gitHubRepositories ->
-                    githubRepositoryModels.value = mGitRepositoryModelMapper.convert(gitHubRepositories)
+                    val data = mGitRepositoryModelMapper.convert(gitHubRepositories)
+                    githubRepositoryModels.value = MainContract.LoadDataSuccess(data)
                 },
                 Consumer { throwable ->
+                    githubRepositoryModels.value = MainContract.LoadDataError(throwable)
                 })
     }
 
-    fun getGithubRepositoryModels(): LiveData<List<GithubRepositoryModel>> = githubRepositoryModels
+    fun getGithubRepositoryModels(): LiveData<MainContract> = githubRepositoryModels
+}
+
+sealed class MainContract {
+    class LoadDataSuccess constructor(val value: List<GithubRepositoryModel>): MainContract()
+    class LoadDataError constructor(val value: Throwable): MainContract()
 }
