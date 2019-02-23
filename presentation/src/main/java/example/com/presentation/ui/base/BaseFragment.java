@@ -8,9 +8,8 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import example.com.presentation.di.components.ActivityComponent;
-import example.com.presentation.ui.main.MainContract;
-import example.com.presentation.ui.main.MainPresenter;
 
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.
@@ -31,14 +30,32 @@ public abstract class BaseFragment<PRESENTER extends BasePresenter, ACTIVITY ext
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // noinspection unchecked
-        mPresenter.attach(this);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // noinspection unchecked
+        mPresenter.attach(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         mPresenter.detach();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        FragmentActivity activity = getActivity();
+        boolean isChangingConfigurations = activity != null && activity.isChangingConfigurations();
+        if (!isChangingConfigurations) mPresenter.destroy();
     }
 
     //---------------------------------------------------------------

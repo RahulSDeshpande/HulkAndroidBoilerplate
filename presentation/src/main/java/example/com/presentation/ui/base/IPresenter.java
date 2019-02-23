@@ -6,4 +6,5 @@ package example.com.presentation.ui.base;
 public interface IPresenter<T extends IView> {
     void attach(T view);
     void detach();
+    void destroy();
 }
