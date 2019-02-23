@@ -20,7 +20,7 @@ public class GitRepositoryModelMapper {
         return model;
     }
 
-    public static Collection<GithubRepositoryModel> convert(Collection<GitHubRepository> gitHubRepositories) {
+    public static List<GithubRepositoryModel> convert(List<GitHubRepository> gitHubRepositories) {
         List<GithubRepositoryModel> list = new ArrayList<>();
         for (GitHubRepository repository: gitHubRepositories) {
             list.add(convert(repository));

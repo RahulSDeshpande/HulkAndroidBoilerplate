@@ -4,6 +4,9 @@ package example.com.presentation.di.components;
 import dagger.Subcomponent;
 import example.com.presentation.di.annotations.PerActivity;
 import example.com.presentation.di.modules.ActivityModule;
+import example.com.presentation.ui.base.BaseActivity;
+import example.com.presentation.ui.base.BaseFragment;
+import example.com.presentation.ui.base.IPresenter;
 import example.com.presentation.ui.main.MainActivity;
 import example.com.presentation.ui.main.MainFragment;
 

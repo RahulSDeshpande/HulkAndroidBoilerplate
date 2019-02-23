@@ -1,14 +1,11 @@
 package example.com.presentation.ui.main;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,10 +21,10 @@ import timber.log.Timber;
 /**
  * Created by Mohammad Jafarzadeh Rezvan on 10/11/2018.
  */
-public class MainFragment extends BaseFragment implements MainContract.View {
+public class MainFragment extends BaseFragment<MainPresenter, MainActivity>
+        implements MainContract.View {
 
     @Inject ExampleAdapter mAdapter;
-    @Inject MainPresenter  mMainPresenter;
 
     private RecyclerView mRecyclerView;
 
@@ -35,25 +32,17 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     // Lifecycle
     //---------------------------------------------------------------
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (!(getActivity() instanceof MainActivity)) {
-            throw new RuntimeException();
-        }
-        // Add activity listener here:
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getMainActivity().getActivityComponent().inject(this);
+        getActivityComponent().inject(this);
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mRecyclerView.setAdapter(mAdapter);
@@ -64,27 +53,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mMainPresenter.attach(this);
-        mMainPresenter.loadData();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mMainPresenter.detach();
-    }
-
-    //---------------------------------------------------------------
-    // Getters or Setters
-    //---------------------------------------------------------------
-
-    @NonNull
-    private MainActivity getMainActivity() {
-        MainActivity activity = (MainActivity) this.getActivity();
-        if (activity == null) {
-            throw new RuntimeException("cannot cast activity");
-        }
-        return activity;
+        mPresenter.loadData();
     }
 
     //---------------------------------------------------------------
@@ -95,7 +64,6 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     public void githubRepositoriesLoaded(Collection<GithubRepositoryModel> githubRepositoryModels) {
         Timber.i("data loaded");
         mAdapter.setData(githubRepositoryModels);
-        mAdapter.notifyDataSetChanged();
     }
 
     @Override

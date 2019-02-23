@@ -49,6 +49,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
 
     public void setData(Collection<GithubRepositoryModel> githubRepositoryModels) {
         mModels = (List<GithubRepositoryModel>) githubRepositoryModels;
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
