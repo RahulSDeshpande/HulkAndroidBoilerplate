@@ -28,22 +28,12 @@ public class MainPresenter extends BasePresenter<MainContract.View> {
     }
 
     public void loadData() {
-            mGetGithubRepositoryList.execute(
-                    gitHubRepositories -> {
-                        getView().githubRepositoriesLoaded(GitRepositoryModelMapper.convert(gitHubRepositories));
-                    },
-                    throwable -> {
-                        commonErrorHandling(throwable);
-                        getView().githubRepositoriesFailed(throwable);
-                    });
-    }
-
-
-    private void commonErrorHandling(Throwable throwable) {
-
-    }
-
-    private void commonSuccessHandling() {
-
+        mGetGithubRepositoryList.execute(
+                gitHubRepositories -> {
+                    getView().githubRepositoriesLoaded(GitRepositoryModelMapper.convert(gitHubRepositories));
+                },
+                throwable -> {
+                    getView().githubRepositoriesFailed(throwable);
+                });
     }
 }
